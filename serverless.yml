@@ -21,12 +21,10 @@ provider:
 
 functions:
   exampleFunction:
-    handler: src/cleverorc/exampleFile.exampleWithPathParameters
-  search:
-    handler: src/cleverorc/monsters.search
+    handler: src/shaefer/exampleFile.exampleWithPathParameters
     events:
       - http:
-          path: cleverorc/search/{id}
+          path: shaefer/{id}
           method: get
           cors: true
 
