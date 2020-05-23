@@ -16,7 +16,7 @@ What I did to get started with a restful service based on a lambda backed by dyn
 1. Look through the project:
     - **Understand what is being created in AWS**
         - Look at `serverless.yml` for the definitions of things going into AWS. 
-        - Make sure to check `region` and `stage` on the provider entry in `serverless.yml` to your desired otherwise you'll deploy to `us-west-2` and the stage will be named `dev`
+        - Make sure to check `service`, `region`, and `stage` on the provider entry in `serverless.yml` to your desired otherwise you'll deploy to `us-west-2` and the stage will be named `dev` The first time you create all this in AWS you probably should go look through everything that got created. It is all happening with CloudFormation and it is doing a lot of nice things for you and all the names and such are coming from the serverless.yml file and are under your control.
     - **Understand the Lambda**
         - Look at `exampleFile.js` for the lambda code - this just prints out the path variable that was passed in from the URI.
     - **Understand which names are what**
@@ -27,4 +27,5 @@ What I did to get started with a restful service based on a lambda backed by dyn
         - We use local data file to mock the data we would be getting from an http call...things like the path, the path parameters, query parameters, thing like that. Look at `test/shaefer/get-local.json` This file simulates the call `https://xxxxxxxxxx.execute-api.{region}.amazonaws.com/{stage}/shaefer/{id}` for example `https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev/shaefer/15` if you don't change any of the default project settings.
 1. Run it locally `serverless invoke local --function exampleFunction --path test/shaefer/get-local.json` This is like hitting your lambda live with the earlier mentioned URI. 
 1. Run `serverless deploy` to create the lambda and dynamodb table in AWS. The output for the deploy will show success and give you the url for the deployed API gateway endpoint that you can hit to test it live.
+1. *OPTIONAL BUT IMPORTANT*: If you forgot something and want to rollback...**BEFORE** you change anything in the serverless.yml just run a `serverless remove` and it will delete all the resources it just created...or try to. Since serverless created everything with Cloudformation it can remove it too. More nuance `serverless remove --stage dev --region us-west-2`
 
