@@ -14,4 +14,5 @@ https://www.serverless.com/blog/cicd-for-serverless-part-2/
         - the defined functionName in the serverless.yml file
         - the name of the exported method on the lambda.
 1. test real one locally `serverless invoke local --function search --path test/cleverorc/get-local.json`
-1. serverless deploy (had to correct aws credentials) lambda creation worked on first try. No dynamo yet...but probably due to missing environment variables.
+1. Make sure to set region on provider to your desired otherwise will probably default to us-east-1 default stage will be "dev"
+1. serverless deploy (had to correct aws credentials) lambda and dynamodb table creation worked out of the box. (added step for region setting)
